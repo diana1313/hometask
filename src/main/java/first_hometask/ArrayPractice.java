@@ -1,76 +1,53 @@
 package first_hometask;
 
-import java.util.ArrayList;
 
 public class ArrayPractice {
 
-    public static void rectangleCounter(Integer[][] array) {
-        ArrayList<Coordinates> coordinates = getCoordinatesForValue(array, 1);
+    public static int rectangleCounter(Integer[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int[][] heightMatrix = new int[m][n + 1];
 
-        for (int i = 0; i < coordinates.size(); i++) {
-            coordinates.get(i);
+        int counter = 0;
 
-        }
-
-    }
-
-    public static ArrayList<Coordinates> getCoordinatesForValue(Integer[][] array, int value) {
-        ArrayList<Coordinates> coordinates = new ArrayList<>();
-
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-                if (array[i][j] == value) {
-                    coordinates.add(new Coordinates(i, j));
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (matrix[i][j] == 0) {
+                    heightMatrix[i][j] = 0;
+                } else {
+                    heightMatrix[i][j] = i == 0 ? 1 : heightMatrix[i - 1][j] + 1;
                 }
             }
         }
-        return coordinates;
-    }
 
+        for (int i = 0; i < m; i++) {
+            int j = 0;
+            while (j < heightMatrix.length) {
+                if (heightMatrix[i][j] == 1 && heightMatrix[i][j + 1] == 0) {
+                    counter++;
+                }
+                j++;
+            }
+        }
+        return counter;
+    }
 
     public static void main(String[] args) {
 
 
         Integer[][] array2D = new Integer[][]{
-                {0, 0, 0, 0, 1, 1, 0, 0, 1, 1},
+                {1, 0, 0, 0, 1, 1, 0, 0, 1, 1},
                 {0, 0, 0, 0, 1, 1, 0, 0, 1, 1},
                 {0, 0, 1, 1, 0, 0, 0, 0, 1, 1},
                 {0, 0, 1, 1, 0, 0, 0, 0, 1, 1},
+                {1, 0, 0, 0, 1, 1, 1, 0, 1, 1},
                 {0, 0, 0, 0, 1, 1, 1, 0, 1, 1},
                 {0, 0, 0, 0, 1, 1, 1, 0, 1, 1},
-                {0, 0, 0, 0, 1, 1, 1, 0, 1, 1},
-                {0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
-                {0, 1, 1, 0, 1, 1, 0, 0, 1, 1},
-                {0, 1, 1, 0, 1, 1, 0, 0, 1, 1}};
+                {0, 1, 0, 0, 0, 0, 0, 0, 1, 1},
+                {0, 1, 0, 0, 1, 1, 1, 0, 1, 1},
+                {0, 1, 0, 0, 1, 1, 1, 0, 1, 1}};
 
-        rectangleCounter(array2D);
-
-    }
-
-    public static class Coordinates {
-        int x;
-        int y;
-
-        public Coordinates(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        public int getX() {
-            return x;
-        }
-
-        public void setX(int x) {
-            this.x = x;
-        }
-
-        public int getY() {
-            return y;
-        }
-
-        public void setY(int y) {
-            this.y = y;
-        }
+        System.out.println(rectangleCounter(array2D));
 
     }
 }

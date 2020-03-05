@@ -15,7 +15,7 @@ public class PropertiesWriter {
         try (Writer output = new FileWriter(path)) {
             properties.store(output, null);
         } catch (IOException e) {
-            throw new PropertiesWriterException("Cannot write properties in file " + path + ". ", e);
+            e.printStackTrace();
         }
     }
 

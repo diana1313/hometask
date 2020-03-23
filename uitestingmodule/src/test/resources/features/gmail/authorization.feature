@@ -7,8 +7,8 @@ Feature: Gmail Authorization
     Given I open Gmail Login page
 
   Scenario Outline: User authorization with valid credentials
-    When I enter <user_email> into email field and press enter on Gmail Login Page
-    And I enter <user_password> into password field and press enter on Gmail Login Page
+    When I enter <user_email> into 'email' field and press enter on Gmail Login Page
+    And I enter <user_password> into 'password' field and press enter on Gmail Login Page
     Then I check that I was successfully logged in with email <user_email> to Gmail Inbox
     Examples:
       | user_email                   | user_password |
@@ -16,12 +16,23 @@ Feature: Gmail Authorization
       #| test.user.john2018@gmail.com | TesT2018      |
 
   Scenario Outline: User authorization with invalid email
-    When I enter <user_email> into email field and press enter on Gmail Login Page
+    When I enter <user_email> into 'email' field and press enter on Gmail Login Page
     Then I check that error message with text appeared:
     """
-    Enter a valid email or phone number.
+    Enter a valid email or phone number
     """
     Examples:
-      | user_email                   |
-      | test.user.john2020@gmail.com |
-      #| test.user.john2018@gmail.com |
+      | user_email                 |
+      | test.user.john2020@cfgfgfd |
+
+  Scenario Outline: User authorization with invalid password
+    When I enter <user_email> into 'email' field and press enter on Gmail Login Page
+    And I enter <user_password> into 'password' field and press enter on Gmail Login Page
+    Then I check that error message with text appeared:
+    """
+    Wrong password. Try again or click Forgot password to reset it.
+    """
+    Examples:
+      | user_email                   | user_password |
+      | test.user.john2020@gmail.com | XXXXXXXX      |
+

@@ -27,13 +27,11 @@ public class GmailAuthorizationSteps {
     }
 
     @Step
-    public boolean checkIfWrongEmailLabelIsDisplayed(String message) {
-        return gmailLoginPage.getWrongEmailLabel().isDisabled();
-    }
-
-    @Step
-    public boolean checkIfWrongPasswordLabelIsDisplayed() {
-        return gmailLoginPage.getWrongPasswordLabel().isDisabled();
+    public boolean checkIfErrorLabelWithMessageIsDisplayed(String message) {
+        if(message.contains("email")){
+        return gmailLoginPage.getWrongEmailLabel(message).isDisplayed();
+        }
+        return gmailLoginPage.getWrongPasswordLabel(message).isDisplayed();
     }
 
     @Step

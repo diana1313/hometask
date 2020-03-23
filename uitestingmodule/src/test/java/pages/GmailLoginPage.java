@@ -11,23 +11,19 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static java.time.temporal.ChronoUnit.SECONDS;
 
-@DefaultUrl("https://mail.google.com/")
+@DefaultUrl("https://accounts.google.com/signin/v2/identifier?service=mail&hl=en")
 public class GmailLoginPage extends PageObject {
 
     @FindBy(xpath = "//input[@type='email']")
     private WebElementFacade emailInput;
     @FindBy(xpath = "//input[@type='password']")
     private WebElementFacade passwordInput;
-    @FindBy(xpath = "///div[contains(text(),'Enter a valid email or phone number.')]")
+    @FindBy(xpath = "//div[contains(text(),'Enter a valid email or phone number.')]")
     private WebElementFacade wrongEmailLabel;
     @FindBy(xpath = "//span[contains(text(),'Wrong password. Try again or click Forgot password to reset it.')] ")
     private WebElementFacade wrongPasswordLabel;
-    private String wrongEmailXpath = "//div/a[contains(@aria-label,'%s')]";
-    private String wrongPasswordXpath = "//div/a[contains(@aria-label,'%s')]";
-
-
-    public GmailLoginPage() {
-    }
+    private String wrongEmailXpath = "//div[contains(text(),'%s')]";
+    private String wrongPasswordXpath = "//span[contains(text(),'%s')] ";
 
     @WhenPageOpens
     public void setWaiter() {
@@ -39,22 +35,21 @@ public class GmailLoginPage extends PageObject {
         return emailInput;
     }
 
+    public WebElementFacade getPasswordInput() {
+        return passwordInput;
+    }
+
     public void waitForPageToLoad() {
         new WebDriverWait(getDriver(), 10)
                 .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
 
     }
 
-    public WebElementFacade getPasswordInput() {
-        return passwordInput;
+    public WebElementFacade getWrongEmailLabel(String message) {
+        return findBy(String.format(wrongEmailXpath, message));
     }
 
-    public WebElementFacade getWrongEmailLabel() {
-        return wrongEmailLabel;
+    public WebElementFacade getWrongPasswordLabel(String message) {
+        return findBy(String.format(wrongPasswordXpath, message));
     }
-
-    public WebElementFacade getWrongPasswordLabel() {
-        return wrongPasswordLabel;
-    }
-
 }

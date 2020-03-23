@@ -3,7 +3,7 @@ import net.serenitybdd.cucumber.CucumberWithSerenity;
 import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
-@CucumberOptions(features = {"uitestingmodule/src/test/resources/features/gmail"},
-        glue = "uitestingmodule/src/test/java/stepdefinitions")
+@CucumberOptions(features = {"src/test/resources/features/gmail"},
+        glue = "src/test/java/stepdefinitions")
 public class Test {
 }

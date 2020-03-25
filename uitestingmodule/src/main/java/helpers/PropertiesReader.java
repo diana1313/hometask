@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.util.Properties;
 
 public class PropertiesReader {
-    private static String pathToConfigFile = "uitestingmodule/src/test/resources/serenity.properties";
+    private static String pathToConfigFile = "src/test/resources/serenity.properties";
 
     public static String getPropertyValue(String key) {
         return getValuePipeline(pathToConfigFile, key);

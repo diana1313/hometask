@@ -1,14 +1,13 @@
-package serenity;
+package steps.serenity;
 
 import net.thucydides.core.annotations.Step;
-import pages.GmailInboxPage;
 import pages.GmailLoginPage;
 
-import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
-public class GmailAuthorizationSteps {
-    GmailLoginPage gmailLoginPage;
-    GmailInboxPage gmailInboxPage;
+
+public class GmailLoginPageSteps {
+    protected GmailLoginPage gmailLoginPage;
 
     @Step
     public void openGmailLoginPage() {
@@ -22,21 +21,22 @@ public class GmailAuthorizationSteps {
 
     @Step
     public void enterPasswordIntoField(String password) {
-        gmailLoginPage.waitForPageToLoad();
+        gmailLoginPage.waitForPasswordInputToBeVisible();
         gmailLoginPage.getPasswordInput().typeAndEnter(password);
     }
 
     @Step
     public boolean checkIfErrorLabelWithMessageIsDisplayed(String message) {
-        if(message.contains("email")){
-        return gmailLoginPage.getWrongEmailLabel(message).isDisplayed();
+        if (message.contains("email")) {
+            return gmailLoginPage.getWrongEmailLabel(message).isDisplayed();
         }
         return gmailLoginPage.getWrongPasswordLabel(message).isDisplayed();
     }
 
     @Step
-    public boolean checkIfIconForLoggedInUserIsDisplayed(String email) {
-        gmailInboxPage.waitPageToLoad();
-        return gmailInboxPage.getLoggedInUserIcon(email).isDisabled();
+    public boolean checkIfLoginPageIsOpened() {
+        gmailLoginPage.waitForPageToLoad();
+        return gmailLoginPage.getLoginFormContainer().isDisplayed();
     }
+
 }

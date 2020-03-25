@@ -13,6 +13,10 @@ public class GmailInboxPage extends PageObject {
 
     @FindBy(xpath = "//div[@role='button' and text()]")
     WebElementFacade buttonWriteEmail;
+    @FindBy(xpath = "//div/a[contains(@href,'SignOutOptions')]")
+    WebElementFacade loggedInUserIcon;
+    @FindBy(xpath = "//div/a[contains(@href,'Logout')]")
+    WebElementFacade logoutButton;
     private String iconXpath = "//div/a[contains(@aria-label,'%s')]";
 
     public WebElementFacade getEmailInput() {
@@ -20,12 +24,19 @@ public class GmailInboxPage extends PageObject {
     }
 
     public void waitPageToLoad() {
-
-        new WebDriverWait(getDriver(), 10, 50)
+        new WebDriverWait(getDriver(), 10, 20)
                 .until(ExpectedConditions.visibilityOf(getEmailInput()));
     }
 
     public WebElementFacade getLoggedInUserIcon(String email) {
         return findBy(String.format(iconXpath, email));
+    }
+
+    public WebElementFacade getLoggedInUserIcon() {
+        return loggedInUserIcon;
+    }
+
+    public WebElementFacade getLogoutButton() {
+        return logoutButton;
     }
 }

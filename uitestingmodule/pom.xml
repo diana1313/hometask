@@ -83,7 +83,7 @@
                 <version>${serenity.maven.version}</version>
                 <executions>
                     <execution>
-                        <id>serenity-reports</id>
+                        <id>steps.serenity-reports</id>
                         <phase>verify</phase>
                         <goals>
                             <goal>aggregate</goal>

@@ -22,6 +22,8 @@ public class GmailLoginPage extends PageObject {
     private WebElementFacade wrongEmailLabel;
     @FindBy(xpath = "//span[contains(text(),'Wrong password. Try again or click Forgot password to reset it.')] ")
     private WebElementFacade wrongPasswordLabel;
+    @FindBy (xpath = "//div[@id='view_container' and contains(@data-app-config,'ServiceLogin')]")
+    private WebElementFacade loginFormContainer;
     private String wrongEmailXpath = "//div[contains(text(),'%s')]";
     private String wrongPasswordXpath = "//span[contains(text(),'%s')] ";
 
@@ -35,14 +37,22 @@ public class GmailLoginPage extends PageObject {
         return emailInput;
     }
 
+    public WebElementFacade getLoginFormContainer() {
+        return loginFormContainer;
+    }
+
     public WebElementFacade getPasswordInput() {
         return passwordInput;
     }
 
-    public void waitForPageToLoad() {
+    public void waitForPasswordInputToBeVisible() {
         new WebDriverWait(getDriver(), 10)
                 .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
+    }
 
+    public void waitForPageToLoad () {
+        new WebDriverWait(getDriver(), 10, 20)
+                .until(ExpectedConditions.visibilityOf(getLoginFormContainer()));
     }
 
     public WebElementFacade getWrongEmailLabel(String message) {

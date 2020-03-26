@@ -5,14 +5,11 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.thucydides.core.annotations.Steps;
 import org.junit.Assert;
-import steps.serenity.GmailInboxPageSteps;
 import steps.serenity.GmailLoginPageSteps;
 
 public class AuthorizationStepsDef {
     @Steps
     protected GmailLoginPageSteps gmailAuthorizationSteps;
-    @Steps
-    protected GmailInboxPageSteps gmailInboxPageSteps;
 
     @Given("^I open Gmail Login page$")
     public void iOpenGmailLoginPage() {
@@ -26,22 +23,10 @@ public class AuthorizationStepsDef {
         } else gmailAuthorizationSteps.enterPasswordIntoField(value);
     }
 
-    @Then("^I check that I was successfully logged in with email \"?([^\"]*)\"? to Gmail Inbox$")
-    public void iCheckThatIWasSuccessfullyLoggedInWithEmailUser_emailToGmailInbox(String email) {
-        Assert.assertTrue(String.format("Icon for logged in user '%s' was not displayed", email),
-                gmailInboxPageSteps.checkIfIconForLoggedInUserIsDisplayed(email));
-    }
-
     @Then("^I check that error message with text appeared on Gmail Login Page:$")
     public void iCheckThatErrorMessageWithTextAppeared(String expectedMessage) {
         Assert.assertTrue(String.format("Expected error message didn't appear: %s", expectedMessage),
                 gmailAuthorizationSteps.checkIfErrorLabelWithMessageIsDisplayed(expectedMessage));
-    }
-
-    @When("^I make logout from my account on Gmail Inbox Page$")
-    public void iMakeLogoutFromMyAccountOnGmailInboxPage() {
-        gmailInboxPageSteps.invokeMenuForLoggedInUser();
-        gmailInboxPageSteps.clickOnLogoutButtonInUserMenu();
     }
 
     @Then("^I check that I was logged out and got back to Gmail Login Page$")

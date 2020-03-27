@@ -4,8 +4,9 @@ import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -34,18 +35,23 @@ public class GmailInboxPage extends PageObject {
     WebElementFacade sendButton;
     @FindBy(xpath = "//div[@role='dialog']/descendant::img[3]")
     WebElementFacade closeLetterDialogIcon;
-    @FindBy(xpath = "//div[@aria-label='Delete']")
+    @FindBy(xpath = "//div[@aria-label='Delete' and @role='button']/div")
     WebElementFacade deleteLetterIcon;
+    @FindBy(xpath = "(//div[@role='checkbox'])[2]")
+    WebElementFacade checkboxForLetterIcon;
     @FindBy(xpath = "//td[contains(text(),'No sent messages!')]")
     WebElementFacade noSentMessagesLabel;
     private String iconXpath = "//div/a[contains(@aria-label,'%s')]";
     private String menuItemXpath = "//div[@class='TK']//div[@data-tooltip='%s']";
-    private String sentEmailХpath = "(//span[contains(text(),'%s')])[2]";
+    private String sentEmailХpath = "//span/span[contains(text(),'%s')]";
 
     public WebElementFacade getSendButton() {
         return sendButton;
     }
 
+    public WebElementFacade getCheckboxForLetterIcon() {
+        return checkboxForLetterIcon;
+    }
 
     public WebElementFacade getNoSentMessagesLabel() {
         return noSentMessagesLabel;
@@ -123,6 +129,17 @@ public class GmailInboxPage extends PageObject {
 
     public WebElementFacade getMenuItemByName(String name) {
         return findBy(String.format(menuItemXpath, name));
+    }
+
+    public void hoverAndClickOnDeleteIcon(){
+        hoverAndClickOnElement(deleteLetterIcon);
+    }
+
+    //TODO: need fix when debug works fine when run fails
+    private void hoverAndClickOnElement(WebElementFacade element) {
+        Actions builder = new Actions(getDriver());
+        Action hoverOverLocationSelector = builder.moveToElement(element).click(element).build();
+        hoverOverLocationSelector.perform();
     }
 
 }

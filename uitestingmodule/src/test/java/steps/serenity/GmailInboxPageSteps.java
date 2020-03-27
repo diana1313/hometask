@@ -1,7 +1,10 @@
 package steps.serenity;
 
 import net.thucydides.core.annotations.Step;
+import org.joda.time.Seconds;
 import pages.GmailInboxPage;
+
+import java.util.concurrent.TimeUnit;
 
 public class GmailInboxPageSteps {
     protected GmailInboxPage gmailInboxPage;
@@ -55,13 +58,13 @@ public class GmailInboxPageSteps {
 
     @Step
     public void deleteEmailWithSubject(String subject) {
-        gmailInboxPage.getLabelOfSentEmail(subject).waitUntilVisible().click();
-        gmailInboxPage.getDeleteLetterIcon().waitUntilVisible().click();
+        gmailInboxPage.getLabelOfSentEmail(subject).click();
+        gmailInboxPage.hoverAndClickOnDeleteIcon();
     }
 
     @Step
-    public boolean checkIfLetterWithSubjectIsDisplayed(String subject){
-       return gmailInboxPage.getLabelOfSentEmail(subject).isDisplayed();
+    public boolean checkIfLetterWithSubjectIsPresent(String subject){
+       return gmailInboxPage.getLabelOfSentEmail(subject).isPresent();
     }
 
     @Step

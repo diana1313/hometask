@@ -4,6 +4,7 @@ import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -135,7 +136,7 @@ public class GmailInboxPage extends PageObject {
         hoverAndClickOnElement(deleteLetterIcon);
     }
 
-    //TODO: need fix when debug works fine when run fails
+    //TODO: need fix when debug works fine when run fails. Delete element return NoSuchElementException
     private void hoverAndClickOnElement(WebElementFacade element) {
         Actions builder = new Actions(getDriver());
         Action hoverOverLocationSelector = builder.moveToElement(element).click(element).build();

@@ -53,7 +53,8 @@ public class GmailInboxPageSteps {
 
     @Step
     public void selectTabWithNameInSideMenu(String tabName) {
-        gmailInboxPage.getMenuItemByName(tabName).waitUntilEnabled().click();
+        gmailInboxPage.waitPageToLoad();
+        gmailInboxPage.getMenuItemByName(tabName).click();
     }
 
     @Step

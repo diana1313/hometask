@@ -4,9 +4,7 @@ import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -43,7 +41,8 @@ public class GmailInboxPage extends PageObject {
     @FindBy(xpath = "//td[contains(text(),'No sent messages!')]")
     WebElementFacade noSentMessagesLabel;
     private String iconXpath = "//div/a[contains(@aria-label,'%s')]";
-    private String menuItemXpath = "//div[@class='TK']//div[@data-tooltip='%s']";
+    private String deleteButtonXpath = "(//div[@title='Delete' and @role='button']/div/div)[3]";
+    private String menuItemXpath = "//div[@data-tooltip='%s']";
     private String sentEmailХpath = "//span/span[contains(text(),'%s')]";
 
     public WebElementFacade getSendButton() {
@@ -132,15 +131,15 @@ public class GmailInboxPage extends PageObject {
         return findBy(String.format(menuItemXpath, name));
     }
 
-    public void hoverAndClickOnDeleteIcon(){
-        hoverAndClickOnElement(deleteLetterIcon);
+    public void hoverAndClickOnDeleteIcon() {
+        hoverAndClickOnElement(deleteButtonXpath);
     }
 
-    //TODO: need fix when debug works fine when run fails. Delete element return NoSuchElementException
-    private void hoverAndClickOnElement(WebElementFacade element) {
-        Actions builder = new Actions(getDriver());
-        Action hoverOverLocationSelector = builder.moveToElement(element).click(element).build();
-        hoverOverLocationSelector.perform();
+    private void hoverAndClickOnElement(String xpath) {
+        Actions action = new Actions(getDriver());
+        action.moveToElement(findBy(xpath));
+        action.click();
+        action.perform();
     }
 
 }

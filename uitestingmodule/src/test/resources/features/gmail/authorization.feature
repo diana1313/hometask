@@ -1,4 +1,4 @@
- Feature: Gmail Authorization
+Feature: Gmail Authorization
   In order to regression testing of Gmail Authorization Flow
   As a User
   I want to have an ability to 'log in' and 'log out'

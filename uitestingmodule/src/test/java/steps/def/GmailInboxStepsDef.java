@@ -53,7 +53,7 @@ public class GmailInboxStepsDef {
 
     @Then("^I the letter with \"?([^\"]*)\"? is present in Sent$")
     public void iTheLetterWithSubjectIsPresentInSent(String subject) {
-        Assert.assertTrue(String.format("Letter with subject: '%s' is not displayed in Sent",subject),
+        Assert.assertTrue(String.format("Letter with subject: '%s' is not displayed in Sent", subject),
                 gmailInboxPageSteps.checkIfLetterWithSubjectIsPresent(subject));
     }
 

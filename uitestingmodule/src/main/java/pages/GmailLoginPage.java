@@ -5,7 +5,6 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.annotations.WhenPageOpens;
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,7 +21,7 @@ public class GmailLoginPage extends PageObject {
     private WebElementFacade wrongEmailLabel;
     @FindBy(xpath = "//span[contains(text(),'Wrong password. Try again or click Forgot password to reset it.')] ")
     private WebElementFacade wrongPasswordLabel;
-    @FindBy (xpath = "//div[@id='view_container' and contains(@data-app-config,'ServiceLogin')]")
+    @FindBy(xpath = "//div[@id='view_container' and contains(@data-app-config,'ServiceLogin')]")
     private WebElementFacade loginFormContainer;
     private String wrongEmailXpath = "//div[contains(text(),'%s')]";
     private String wrongPasswordXpath = "//span[contains(text(),'%s')] ";
@@ -45,12 +44,7 @@ public class GmailLoginPage extends PageObject {
         return passwordInput;
     }
 
-    public void waitForPasswordInputToBeVisible() {
-        new WebDriverWait(getDriver(), 10)
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
-    }
-
-    public void waitForPageToLoad () {
+    public void waitForPageToLoad() {
         new WebDriverWait(getDriver(), 10, 20)
                 .until(ExpectedConditions.visibilityOf(getLoginFormContainer()));
     }

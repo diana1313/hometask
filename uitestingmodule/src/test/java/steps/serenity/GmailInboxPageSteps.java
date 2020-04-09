@@ -1,10 +1,7 @@
 package steps.serenity;
 
 import net.thucydides.core.annotations.Step;
-import org.joda.time.Seconds;
 import pages.GmailInboxPage;
-
-import java.util.concurrent.TimeUnit;
 
 public class GmailInboxPageSteps {
     protected GmailInboxPage gmailInboxPage;
@@ -64,12 +61,12 @@ public class GmailInboxPageSteps {
     }
 
     @Step
-    public boolean checkIfLetterWithSubjectIsPresent(String subject){
-       return gmailInboxPage.getLabelOfSentEmail(subject).isPresent();
+    public boolean checkIfLetterWithSubjectIsPresent(String subject) {
+        return gmailInboxPage.getLabelOfSentEmail(subject).isPresent();
     }
 
     @Step
-    public boolean checkIfLabelNoSentMessagesIsDisplayed(){
+    public boolean checkIfLabelNoSentMessagesIsDisplayed() {
         return gmailInboxPage.getNoSentMessagesLabel().waitUntilVisible().isDisplayed();
     }
 

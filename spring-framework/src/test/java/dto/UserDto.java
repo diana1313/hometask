@@ -1,7 +1,8 @@
 package dto;
 
+import lombok.Data;
 
-//@Data
+@Data
 public class UserDto {
     private String email;
     private String password;

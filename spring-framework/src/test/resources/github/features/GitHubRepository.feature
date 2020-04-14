@@ -10,5 +10,7 @@ Feature: GitHub Repository Search
       | nonexisting@test.com | 123456Pwd |
     Then I check I was successfully logged in to GitHub
 
-  Scenario: User search for repository in GitHub
-    When I enter
+  Scenario Outline: User search for repository in GitHub
+    When I enter repository <searched_name> into search input and press Enter on GitHub Main Page
+    Then I check <number_of> result contains <searched_name> of repository I searched for on GitHub Main Page
+    Examples:

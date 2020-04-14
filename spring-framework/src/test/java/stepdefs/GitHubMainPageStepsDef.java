@@ -1,10 +1,10 @@
 package stepdefs;
 
-import helpers.TestConfig;
+import github.framework.spring.TestConfig;
 import io.cucumber.java.en.Then;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import pages.github.GitHubMainPage;
+import github.framework.pages.GitHubMainPage;
 
 @ContextConfiguration(classes = TestConfig.class)
 

@@ -1,22 +1,21 @@
-package driver;
+package github.framework.driver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.springframework.stereotype.Component;
 
 import static io.github.bonigarcia.wdm.DriverManagerType.CHROME;
 
+@Component
 public class DriverProvider {
-
-    private static WebDriver driver;
 
     public WebDriver getDriverInstance() {
         if (driver == null) {
             WebDriverManager.getInstance(CHROME).setup();
-            WebDriver driver = new ChromeDriver();
+            WebDriver driver ;
 
         }
-        return driver;
+        return driver.get();
     }
 
     public void killDriverInstance() {

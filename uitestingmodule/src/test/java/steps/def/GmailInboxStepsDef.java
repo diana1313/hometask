@@ -1,9 +1,9 @@
 package steps.def;
 
 
-import cucumber.api.DataTable;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import io.cucumber.datatable.DataTable;
 import net.thucydides.core.annotations.Steps;
 import org.junit.Assert;
 import steps.serenity.GmailInboxPageSteps;

@@ -1,7 +1,7 @@
 package steps.serenity;
 
 import net.thucydides.core.annotations.Step;
-import pages.GmailLoginPage;
+import github.framework.pages.GmailLoginPage;
 
 
 public class GmailLoginPageSteps {

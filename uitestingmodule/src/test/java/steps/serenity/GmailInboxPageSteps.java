@@ -1,7 +1,7 @@
 package steps.serenity;
 
 import net.thucydides.core.annotations.Step;
-import pages.GmailInboxPage;
+import github.framework.pages.GmailInboxPage;
 
 public class GmailInboxPageSteps {
     protected GmailInboxPage gmailInboxPage;

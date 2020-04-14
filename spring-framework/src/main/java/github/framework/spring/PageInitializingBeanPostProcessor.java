@@ -1,7 +1,7 @@
 package github.framework.spring;
 
-import github.framework.driver.DriverProvider;
-import github.framework.pages.BasePage;
+import github.framework.driver.Driver;
+import github.framework.pages.BaseGitHubPage;
 import org.openqa.selenium.support.PageFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +12,12 @@ import org.springframework.stereotype.Component;
 public class PageInitializingBeanPostProcessor implements BeanPostProcessor {
 
     @Autowired
-    private DriverProvider driverProvider;
+    private Driver driver;
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        if (bean instanceof BasePage) {
-            PageFactory.initElements(driverProvider.getDriverInstance(), bean);
+        if (bean instanceof BaseGitHubPage) {
+            PageFactory.initElements(driver.getDriver(), bean);
         }
         return bean;
     }

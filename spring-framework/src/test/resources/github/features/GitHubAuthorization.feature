@@ -6,8 +6,11 @@ Feature: GitHub Authorization
   Background:
     Given I open GitHub Login page
 
-  Scenario: Login of user with valid credentials to GitHub
+  Scenario Outline: Login of user with valid credentials to GitHub
     When I login with credentials and click on button 'Sign In' on GitHub Login Page:
-      | email                | password  |
-      | nonexisting@test.com | 123456Pwd |
-    Then I check I was successfully logged in to GitHub
+      | email       | password     |
+      | <user_name> | TesT2020TesT |
+    Then I check I was successfully logged in with my "<user_name>" to GitHub
+    Examples:
+      | user_name        |
+      | test-user2020-at |

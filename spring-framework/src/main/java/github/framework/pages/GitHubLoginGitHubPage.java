@@ -1,11 +1,14 @@
 package github.framework.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GitHubLoginPage extends BasePage {
+public class GitHubLoginGitHubPage extends BaseGitHubPage {
     private static final String BASE_URL = "https://github.com/login";
     @FindBy(id = "login_field")
     private WebElement loginField;
@@ -16,7 +19,13 @@ public class GitHubLoginPage extends BasePage {
 
     @Override
     public void openPage() {
-        driverProvider.getDriverInstance().get(BASE_URL);
+        driver.getDriver().get(BASE_URL);
+    }
+
+    @Override
+    public void waitForPageToLoad() {
+        new WebDriverWait(driver.getDriver(), 20)
+                .until(ExpectedConditions.visibilityOf(sighInButton));
     }
 
     public void enterValueIntoLoginField (String value){

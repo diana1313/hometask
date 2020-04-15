@@ -1,6 +1,5 @@
 package github.framework.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -19,20 +18,20 @@ public class GitHubLoginGitHubPage extends BaseGitHubPage {
 
     @Override
     public void openPage() {
-        driver.getDriver().get(BASE_URL);
+        driver.getInstance().get(BASE_URL);
     }
 
     @Override
-    public void waitForPageToLoad() {
-        new WebDriverWait(driver.getDriver(), 20)
+    public void waitOnLoad() {
+        new WebDriverWait(driver.getInstance(), 20)
                 .until(ExpectedConditions.visibilityOf(sighInButton));
     }
 
-    public void enterValueIntoLoginField (String value){
+    public void enterValueIntoLoginField(String value) {
         loginField.sendKeys(value);
     }
 
-    public void enterValueIntoPasswordField (String value){
+    public void enterValueIntoPasswordField(String value) {
         loginField.sendKeys(value);
     }
 

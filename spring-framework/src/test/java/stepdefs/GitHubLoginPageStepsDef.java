@@ -1,14 +1,14 @@
 package stepdefs;
 
 import dto.UserDto;
-import github.framework.spring.TestConfig;
+import github.framework.pages.GitHubLoginGitHubPage;
+import github.framework.spring.ApplicationConfig;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import github.framework.pages.GitHubLoginGitHubPage;
 
-@ContextConfiguration(classes = TestConfig.class)
+@ContextConfiguration(classes = ApplicationConfig.class)
 public class GitHubLoginPageStepsDef {
 
     @Autowired

@@ -9,24 +9,17 @@ import org.springframework.stereotype.Component;
 public class GitHubMainGitHubPage extends BaseGitHubPage {
     private final String searchResultXpath = "//ul[@class='repo-list']/li[%s]/*[contains(., '%s')]";
     private final String userIconXpath = "//a[@role='menuitem' and @href='/%s'][1]";
+
     @FindBy(xpath = "//div[@role='search']/input")
     private WebElement searchInput;
-    @FindBy(xpath = "//div[@role='combobox']//form[@role='search']")
-    private WebElement globalSearch;
-
 
     public WebElement getLoggedInUserIcon(String userName) {
-        return driver.getDriver().findElement(
+        return driver.getInstance().findElement(
                 By.xpath(String.format(userIconXpath, userName)));
     }
 
     public WebElement getSearchResult(String number, String name) {
-        return driver.getDriver().findElement(
+        return driver.getInstance().findElement(
                 By.xpath(String.format(searchResultXpath, number, name)));
     }
-
-    public void enterValueIntoSearchInput(String value) {
-        searchInput.sendKeys(value);
-    }
-
 }

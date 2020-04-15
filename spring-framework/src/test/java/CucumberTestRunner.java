@@ -1,10 +1,13 @@
+import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.ActiveProfiles;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@CucumberOptions(features = {"github/features"},
-        glue = {"stepdefs"})
+@RunWith(Cucumber.class)
+@ActiveProfiles("chrome")
+@CucumberOptions(
+        glue = {"stepdefs"},
+        features = {"src/test/resources/github/features"})
 public class CucumberTestRunner {
 
 }

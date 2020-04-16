@@ -1,6 +1,6 @@
 package github.framework.pages.components;
 
-import github.framework.driver.DriverProvider;
+import github.framework.driver.DriverFactory;
 import github.framework.pages.Loadable;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,9 +12,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class GitHubSearchBar implements Loadable {
     @Autowired
-    protected DriverProvider driver;
+    protected DriverFactory driver;
 
-    @FindBy(xpath = "//div[@role='combobox']//form[@role='search']")
+    @FindBy(xpath = "//div[@role='combobox']//form[@role='search']//input[1]")
     private WebElement globalSearch;
 
     public void enterValueIntoSearchInput(String value) {
@@ -23,7 +23,7 @@ public class GitHubSearchBar implements Loadable {
 
     @Override
     public void waitOnLoad() {
-        new WebDriverWait(driver.getInstance(), 20)
+        new WebDriverWait(driver.getDriver(), 20)
                 .until(ExpectedConditions.visibilityOf(globalSearch));
     }
 }

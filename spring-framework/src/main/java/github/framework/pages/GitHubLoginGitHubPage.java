@@ -18,12 +18,12 @@ public class GitHubLoginGitHubPage extends BaseGitHubPage {
 
     @Override
     public void openPage() {
-        driver.getInstance().get(BASE_URL);
+        driver.getDriver().get(BASE_URL);
     }
 
     @Override
     public void waitOnLoad() {
-        new WebDriverWait(driver.getInstance(), 20)
+        new WebDriverWait(driver.getDriver(), 20)
                 .until(ExpectedConditions.visibilityOf(sighInButton));
     }
 
@@ -32,7 +32,7 @@ public class GitHubLoginGitHubPage extends BaseGitHubPage {
     }
 
     public void enterValueIntoPasswordField(String value) {
-        loginField.sendKeys(value);
+        passwordField.sendKeys(value);
     }
 
     public void clickOnSignInButton() {

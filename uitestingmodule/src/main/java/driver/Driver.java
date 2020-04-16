@@ -6,8 +6,8 @@ import org.openqa.selenium.WebDriver;
 
 public abstract class Driver {
 
-    @Setter
     @Getter
+    @Setter
     protected WebDriver driver;
 
     public abstract void initializeDriver();

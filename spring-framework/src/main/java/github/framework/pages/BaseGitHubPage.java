@@ -9,6 +9,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import java.util.concurrent.TimeUnit;
+
 @Component
 public class BaseGitHubPage implements Page, Loadable {
     private static final String GITHUB_ICON_XPATH = "//a[@class='Header-link' and @href='https://github.com/'][1]";
@@ -19,6 +22,12 @@ public class BaseGitHubPage implements Page, Loadable {
     public GitHubSearchBar searchBar;
     @Autowired
     protected DriverFactory driver;
+
+    @PostConstruct
+    public void setUp() {
+        driver.getDriver().manage().window().maximize();
+        driver.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
 
     @Override
     public void openPage() {

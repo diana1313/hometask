@@ -9,10 +9,10 @@ Feature: GitHub Repository Search
       | email    | test-user2020-at |
       | password | TesT2020TesT     |
 
-  @debug
+  @first
   Scenario Outline: User search for repository in GitHub
     When I enter repository "<searched_name>" into search input and press Enter on GitHub Main Page
     Then I check "<number_of>" result contains "<searched_name>" of repository I searched for on GitHub Main Page
     Examples:
       | searched_name | number_of |
-      | bonigarcia   | 1         |
+      | bonigarcia    | 1         |

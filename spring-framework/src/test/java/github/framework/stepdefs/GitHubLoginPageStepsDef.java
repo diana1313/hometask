@@ -11,7 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import java.util.Map;
 
 @ContextConfiguration(classes = ApplicationConfig.class)
-public class GitHubLoginPageStepsDef {
+public class GitHubLoginPageStepsDef extends BaseStepsDef {
 
     @Autowired
     private GitHubLoginGitHubPage loginPage;

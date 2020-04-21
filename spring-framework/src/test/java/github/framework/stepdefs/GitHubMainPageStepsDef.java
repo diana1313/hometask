@@ -6,7 +6,9 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class GitHubMainPageStepsDef {
+import static org.openqa.selenium.Keys.ENTER;
+
+public class GitHubMainPageStepsDef extends BaseStepsDef {
 
     @Autowired
     protected GitHubMainGitHubPage mainPage;
@@ -14,7 +16,7 @@ public class GitHubMainPageStepsDef {
     @When("I enter repository {string} into search input and press Enter on GitHub Main Page")
     public void iEnterRepositoryIntoSearchInputAndPressEnterOnGitHubMainPage(String searchedName) {
         mainPage.waitOnLoad();
-        mainPage.getSearchBar().enterValueIntoSearchInput(searchedName);
+        mainPage.getSearchBar().enterValueIntoSearchInput(searchedName + ENTER);
     }
 
     @Then("I check {string} result contains {string} of repository I searched for on GitHub Main Page")

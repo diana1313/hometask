@@ -13,7 +13,7 @@ public class PropertiesReader {
     static {
         Properties tempProps = new Properties();
         try {
-            tempProps.load(new FileInputStream("src/main/input.properties"));
+            tempProps.load(new FileInputStream("java/input.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }
